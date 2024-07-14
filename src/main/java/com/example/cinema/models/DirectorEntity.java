@@ -1,5 +1,7 @@
 package com.example.cinema.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -27,5 +29,6 @@ public class DirectorEntity {
     private Integer age;
 
     @OneToMany(mappedBy = "director")
+    @JsonBackReference
     private List<MovieEntity> movies;
 }

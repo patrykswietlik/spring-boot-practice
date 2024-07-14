@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:32771/postgres
+    url: jdbc:postgresql://localhost:32768/postgres
     username: postgres
   jpa:
     hibernate:
@@ -14,3 +14,7 @@ spring:
 server:
   servlet:
     context-path: /api
+
+security:
+  jwt:
+    key: 4CBDAF98D3838423B4684F77757DB

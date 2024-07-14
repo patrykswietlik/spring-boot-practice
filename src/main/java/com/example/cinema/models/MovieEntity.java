@@ -1,5 +1,7 @@
 package com.example.cinema.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +30,7 @@ public class MovieEntity {
 
     @ManyToOne
     @JoinColumn(name = "director_id")
+    @JsonManagedReference
     private DirectorEntity director;
 
     @ManyToMany

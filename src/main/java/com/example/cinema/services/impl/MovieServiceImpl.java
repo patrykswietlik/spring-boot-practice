@@ -20,16 +20,17 @@ public class MovieServiceImpl implements MovieService {
     private final DirectorRepository directorRepository;
     private final MovieDtoMapper movieDtoMapper;
 
+    @Override
     public List<MovieDto> getAllMovies() {
         return movieDtoMapper.moviesToMoviesDto(movieRepository.findAll());
     }
 
-    public MovieDto getMovieById(Integer id) {
-        MovieEntity movie = movieRepository.findById(id).orElseThrow(() -> new MovieNotFoundException("Movie with id " + id + " was not found"));
-
-        return movieDtoMapper.movieToMovieDto(movie);
+    @Override
+    public MovieEntity getMovieById(Integer id) {
+        return movieRepository.findById(id).orElseThrow(() -> new MovieNotFoundException("Movie with id " + id + " was not found"));
     }
 
+    @Override
     public MovieDto createMovie(MovieDto movieDTO) {
         MovieEntity movie = MovieEntity.builder()
                 .title(movieDTO.title())
@@ -44,6 +45,7 @@ public class MovieServiceImpl implements MovieService {
         return movieDtoMapper.movieToMovieDto(createdMovie);
     }
 
+    @Override
     public List<MovieDto> getMoviesByTitle(String title) {
         List<MovieEntity> movies = movieRepository.findAllByTitleContainingIgnoreCase(title);
         return movieDtoMapper.moviesToMoviesDto(movies);
